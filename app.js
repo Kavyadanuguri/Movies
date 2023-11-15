@@ -3,7 +3,7 @@ const app = express();
 const { open } = require("sqlite");
 const path = require("path");
 const sqlite3 = require("sqlite3");
-
+app.use(express.json());
 const dbpath = path.join(__dirname, "moviesData.db");
 let db = null;
 
@@ -89,7 +89,7 @@ app.put("/movies/:movieId/", async (request, response) => {
         WHERE
          movie_id = ${movieId};`;
 
-  await db.run(updatePlayerDetails);
+  await db.run(updateMovieDetails);
   response.send("Movie Details Updated");
 });
 
